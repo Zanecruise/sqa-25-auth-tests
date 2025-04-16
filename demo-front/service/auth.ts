@@ -1,4 +1,3 @@
-import axios from "axios";
 import apiClient from "./api";
 
 const BASE_URL = "/auth";
