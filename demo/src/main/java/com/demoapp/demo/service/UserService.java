@@ -24,7 +24,7 @@ public class UserService {
   }
 
   public User createUser(String email, String password) {
-    User user = new User();
+    User user = new User(email, password);
     user.setEmail(email);
     user.setPassword(password);
     return userRepository.save(user);
@@ -32,6 +32,14 @@ public class UserService {
 
   public User findByEmail(String email) {
     return userRepository.findByEmail(email).orElse(null);
+  }
+
+  public void resetPassword(String email, String newPassword) {
+    User user = findByEmail(email);
+    if (user != null) {
+      user.setPassword(newPassword);
+      userRepository.save(user);
+    }
   }
 
 }
